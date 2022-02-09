@@ -11,5 +11,6 @@ thisString = 'Hello hufs'
 
 #print 안에 객체를 선언하면 자동으로 1칸씩 간격이 벌어진다.
 print(thisFloat,thisInt,thisChar,thisString)
+input(thisFloat,thisInt,thisChar,thisString)
 
 # print(f'{thisFloat} {thisInt} {thisChar} {thisString}')

@@ -1,0 +1,8 @@
+num1=input("첫번째 정수 입력 : ")
+num2=input("두번째 정수 입력 : ")
+num3=int(num1)
+num4=int(num2)
+print(num1,'+',num2,'=',sum1)
+print('type:',type(sum1))
+print(num3,'+',num4,'=',sum2)
+print('type:',type(sum2))
