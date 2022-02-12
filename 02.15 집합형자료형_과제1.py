@@ -12,7 +12,8 @@ while True:
     if rule == '1':
         searchName = input('검색할 이름 : ')
          
-        if next((item for item in phoneNum if item['name'] == searchName), False):
+        #검색할 이름이 phoneNum 안에 있는 지 식별하기 위한 코드
+        if next((item for item in phoneNum if item['name'] == searchName), False): 
             result = next((item for item in phoneNum if item['name'] == searchName), False)
             print(f'{result["name"]} : {result["tel"]}')
         
