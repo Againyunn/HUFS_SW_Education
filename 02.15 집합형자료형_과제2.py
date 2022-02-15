@@ -4,6 +4,8 @@ score=0
 
 
 
+
+
 for i in range(len(testList)):
     answer = input(f"{testList[i][0]} : ")
     if answer == str(testList[i][1]):

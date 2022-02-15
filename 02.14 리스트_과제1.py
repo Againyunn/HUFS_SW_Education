@@ -9,7 +9,7 @@ while True:
         ## 현재 리스트의 값을 역순으로 출력
         print('\n역순 :', end='')
         for i in range(len(thisList), 0, -1):
-            print(f' {thisList[i-1]}', end='' )
+            print(f'{thisList[i-1]} ', end='')
 
         ##삽입할 정수 값 받아 삽입 후, 출력
         inputNum = int(input('\n\n삽입 정수 : '))

@@ -28,3 +28,39 @@ while True:
     
     else:
         print('잘못된 번호를 입력함!!!')
+
+# List=[]
+
+# for i in range(3):
+# 	a= input('이름 :')
+# 	b=input('전화번호 :')
+	
+# 	dic={'name':a, 'tel':b}
+	
+# 	List.append(dic)
+
+# print(List)
+# print()
+
+
+# while True:
+# 	c=input('1. 검색 \n2. 종료 :')
+
+# 	if int(c)==1:
+# 		d=input('검색할 이름 :')
+		
+# 		for ele in List:
+# 			if ele['name']==d:
+# 				print(ele['name'],':', ele['tel'])
+# 				break
+			
+# 		else:
+# 			print('{}의 전화번호는 저장되어 있지 않습니다.'.format(d))
+			
+		
+# 	elif int(c)==2:
+# 		print('리스트 내용', '\n',List[0], '\n',List[1], '\n',List[2])
+# 		break
+		
+# 	else:
+# 		print('잘못된 번호를 입력했습니다.')
