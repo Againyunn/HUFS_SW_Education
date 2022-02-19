@@ -1,15 +1,380 @@
+# for i in range(calNums[1],): 를 for i in nums: 로 바꿔주시구
+# 	total = base  대신 total = 1 로 수정하면 될 거에요.
+
+# 위의 두 코드를 수정해야 하는 이유는 1차 반복문에서 nums로 입력된 값들이 i가 되게 반복하고 결과 값(total)을 1로 초기화 한 뒤,
+# 2차 반복문을 통해 nums의 숫자만큼 솝하는 연산을 반복하기 위해서 입니다:)
+
+# 수정해야 할 부분과 원리:
+# total = nums.index[i]	→total *= base를 통해 total에 곱 연산이 수행되므로, total = 1로 수정해주세요.
+# for j in nums:    → 앞선 for i in nums: 에서 선택된 nums가 i로 저장되어 있을거에요. 이 i만큼 total *= base 연산을 반복해야 하니, for j in range(i) : 로 수정해주세요.
+
+# 리스트말고 문자열로 저장할 수도 있지만, 결과적으로는 함수 안에서 for문을 반복하며 문자열의 빈칸과 값을 비교해서 값만 가져오는 작업을 추가로 해주어야 해요ㅜㅜ
+# 지금 과제를 푸실 때 문자열로 저장하는 방법이 최선이라고 생각합니다!
+
+# def invest(a,b,list): #를 def invest(a,b,c): 로 변경해보세요. 함수 안에서 연산하는 값이 리스트 c이므로
+	
+# 	total=a-final  #total값 자체를 int형식으로 바꿔보시겠어요? total = int(a - final) 
+# 	print('%d'%(total))
+
+# # var = var + var*(c/100) ←수정할 코드
+# a += a *(c/100)     #a에 누적합을 연산
+# # net_income = var-a ←수정할 코드
+# net_income = a - var #a에 누적합 계속 더했기에 a가 마지막에 남은 금액이 되고, var은 초기 비용이 됩니다:)
+
+
+# 넵 작성하신 코드의 13,14,15,19번 문장처럼 출력하면 됩니다.
+# 21번에 '각 문장을 입력합니다'라는 말은 13~15번을 통해서 데이터를 읽어서 sentences라는 리스트에 추가한 문장을 한줄씩'data/about_python.txt'에 저장하라는 의미이에요.
+# 즉, for문을 통해 sentences의 인덱스 수 만큼 반복하고, sentences의 각 원소를 f.write()을 사용해 저장하면 될 거에요.
+
+# # -*- coding: utf-8 -*-
+# # UTF-8 encoding when using korean
+
+
+# #결과 값은 정상적으로 나오겠지만, 함수 과제인 만큼 아래 코드를 바탕으로 함수식으로 바꿔서 제출하는 편이 좋을 것 같아요!
+# a=int(input('투자 액수를 입력하세요: '))
+# b=int(input('투자한 날짜 수를 입력하세요: '))
+# d = a #a는 수익률 증감 값을 누적할 거라, 원금을 d에 저장
+# for i in range(b): #1, b로 range()의 범위를 지정하면 1부터 b-1까지만 실행되어서 1번을 덜 실행하게 될 거에요
+# 	c = int(input('%d일차 변동 데이터를 입력하세요: '%(i+1))) #아래에서 이미 +1을 해주고 있으니, for i in range(b)로 써도 될 것 같아요.
+# 	a = a+a*(c/100) #a에 매일의 수익률c 값을 반영한 누적합 계산
+# 	# a += a*(c/100) #위의 코드를 이렇게 바꿔도 정상 작동하니 참고해주세요 → += 연산자 활용
+
+# money = int(a - d) #최종 금액 - 원금 의 결과를 int데이터로 바꿔서 소수점을 버림해주세요.
+# print(money)
+
+# if money>0:
+# 	print('이득입니다.')
+# elif money==0:
+# 	print('본전입니다.')
+# else:
+# 	print('손해입니다.')
+
+
+# # -*- coding: utf-8 -*-
+# # UTF-8 encoding when using korean
+
+# f = open('data/about_python.txt', 'r') 
+# sentences = []
+# i=1
+
+# while True:
+# 	data = f.readline()
+# 	if not data:
+# 		break
+# 	else:
+# 		numbering = f'{i}번 문장'
+# 		data = numbering+data
+# 		sentences.append(data)
+# 		i+=1
+# f.close()
+
+# f = open('data/about_python.txt', 'w')
+# for j in range(len(sentences)):
+# 	f.write(sentences[j])
+# f.close()
+
+# f = open('data/about_python.txt','r')
+# print(f.read())
+# f.close()
+
+
+# A = [1,2,3,4,5,6,7,8,9,10]
+# A = sorted(A)
+# F = open('data/out.txt','w')
+
+# for i in A:
+#     data = ('%d' %i)
+#     F.write(data)
+	
+# F.close()
+
+
+# # -*- coding: utf-8 -*-
+# # UTF-8 encoding when using korean
+
+# def profit(a,b):
+# 	earn=a
+# 	for i in range(b):
+# 		n=int(input(f'{i+1}일차 변동 데이터를 입력하세요: '))
+# 		earn += earn*n/100
+# 	return earn
+
+# a=int(input('투자 액수를 입력하세요: '))
+# b=int(input('투자한 날짜 수를 입력하세요: '))
+
+# earn=profit(a,b)
+
+# if earn>a:
+# 	result='이득입니다.'
+# elif earn==a:
+# 	result='본전입니다.'
+# elif earn<a:
+# 	result='손해입니다.'
+	
+# print(earn-a)
+# print(result)	
+	
+	
+
+	
+
+# # -*- coding: utf-8 -*-
+# # UTF-8 encoding when using korean
+
+# def invest(a,b,list):
+# 	final = a
+# 	for x in range(b):
+# 		a=a+a*(c[x]/100)
+		
+# 	total=a-final
+# 	print('%d'%(total))
+	
+# 	if total>0:
+# 		print('이득입니다.')
+# 	elif total ==0:
+# 		print('본전입니다.')
+# 	else:
+# 		print('손해입니다.')
+		
+# a=int(input('투자 액수를 입력하세요:'))
+# b=int(input('투자한 날짜 수를 입력하세요:'))
+# c=[]
+# for i in range(b):
+# 	data=float(input('%d일차 변동 데이터를 입력하세요:'%(i+1)))
+# 	c.append(data)
+# invest(a,b,c)
+
+
+# # -*- coding: utf-8 -*-
+# # UTF-8 encoding when using korean
+# d=[]
+# #현 코드를 보면 모든 변수가 함수 안에 있고, 함수 내부에서 연산을 한 뒤 최종 금액만 반환하고 있는데, 순수익만 반환하도록 바꾸는 게 편할 것 같아요
+# def stock():
+# 	a=int(input('투자 액수를 입력하세요: '))
+# 	b=int(input('투자한 날짜 수를 입력하세요: '))
+# 	100<=a<=10000
+# 	1<=b<=10
+# 	profit = a #원금 a 대신에 계속 값을 연산할 변수 profit에 원금(a)를 저장
+# 	for i in range(b):
+# 		c=int(input(f'{i+1}일차 변동 데이터를 입력하세요: '))
+# 		-100<=c<=100
+# 		d.append(c)
+# 		profit += profit*((d[i])/100) #여기서 핵심은 연산하는 값  a*((d[i])/100) 에서 원금(a) 가 계속 더해지는 방식이어야 해요
+# 	result = int(profit-a) #소수점을 버린 값을 반환해야 하므로 int로 감싸서 소수점 버림할게요
+# 	return result
+# #넵 혹시 화면 보이시면 여기에 주석으로 남겨드릴게요
+# result = stock()
+# print("{:g}".format(result))
+# if result>=0:
+# 	print('이득입니다.')
+# elif result ==0:
+# 	print('본전입니다.')
+# else:
+# 	print('손해입니다.')
+
+
+# # -*- coding: utf-8 -*-
+
+# # UTF-8 encoding when using korean
+# d=[]
+
+# #현 코드를 보면 모든 변수가 함수 안에 있고, 함수 내부에서 연산을 한 뒤 최종 금액만 반환하고 있는데, 순수익만 반환하도록 바꾸는 게 편할 것 같아요
+# def stock():
+# 	a=int(input('투자 액수를 입력하세요: '))
+# 	b=int(input('투자한 날짜 수를 입력하세요: '))
+# 	100<=a<=10000
+# 	1<=b<=10
+# 	profit = a #원금 a 대신에 계속 값을 연산할 변수 profit에 원금(a)를 저장
+# 	for i in range(b):
+# 		c=int(input(f'{i+1}일차 변동 데이터를 입력하세요: '))
+# 		-100<=c<=100
+# 		d.append(c)
+# 		profit += profit*((d[i])/100) #여기서 핵심은 연산하는 값  a*((d[i])/100) 에서 원금(a) 가 계속 더해지는 방식이어야 해요
+# 		print(profit)
+# 	result = int(profit-a) #소수점을 버린 값을 반환해야 하므로 int로 감싸서 소수점 버림할게요
+# 	return result
+# #넵 혹시 화면 보이시면 여기에 주석으로 남겨드릴게요
+# result = stock()
+# print("{:g}".format(result))
+# if result>=0:
+# 	print('이득입니다.')
+# elif result ==0:
+# 	print('본전입니다.')
+# else:
+# 	print('손해입니다.')
+# # d=[]
+# a=int(input('투자 액수를 입력하세요: '))
+# b=int(input('투자한 날짜 수를 입력하세요: '))
+# 100<=a<=10000
+# 1<=b<=10
+# profit = a
+# for i in range(b):
+# 	c=int(input(f'{i+1}일차 변동 데이터를 입력하세요: '))
+# 	-100<=c<=100
+# 	d.append(c)
+# 	a += a*(c/100)
+# 	print(profit)
+# 	# profit += a*(d[i]/100)
+
+# print("{:g}".format(a - profit))
+# if profit-a>=0:
+# 	print('이득입니다.')
+# elif profit-a ==0:
+# 	print('본전입니다.')
+# else:
+# 	print('손해입니다.')
+
+
+# listN=[]
+
+# def profit(a,b,*n):
+# 	global listN
+# 	earn=a
+	
+# 	for i in range(b):
+# 		n=listN[i]
+# 		earn += earn*n/100
+	
+# 	earn -= a
+# 	return int(earn)
+# 		#for j in range(b):
+# 			#earn += a*n/100
+# 	#return earn
+
+# a=int(input('투자 액수를 입력하세요: '))
+# b=int(input('투자한 날짜 수를 입력하세요: '))
+# for k in range(1,b+1):
+# 	num=float(input(f'{k}일차 변동 데이터를 입력하세요: '))
+# 	listN.append(num)
+
+# earn=profit(a,b,listN)
+
+# if earn>a:
+# 	result='이득입니다.'
+# elif earn==a:
+# 	result='본전입니다.'
+# elif earn<a:
+# 	result='손해입니다.'
+	
+# print(earn)
+# print(result)	
+	
+
+
+# def invest(a, b, p): #각 각 매개변수로 a(투자액수) b(날짜수) p(변동 수익률)
+# 	total = a  #이걸 해주는 이유는 앞으로 a값이 계속 변할 텐데, 원래 값이랑 result-=a 이거할 때 필요해서 그래요!
+# 	#아아아
+# 	for i in range(b): #b 날짜만큼 연산을 해주기 위한 반복문 설정
+# 		cal = a*(p[i]/100) #앞서 위에서 작성하신 연산 <- 이부분에서 우리가 p로 받은 값을 넣어야 했는데 위의 비함수 코드 그대로 썼었네요ㅜ
+# 		a += cal #결과값을 total에 누적
+# 		print(total)
+# 	#순수익을 얻기 위해 a 아아 감사합니당 넵
+# 	print(a, ',', total)
+# 	result = int(total - a)# 순수익 계산 작성하신 코드 최대한 활용해볼게요 #넵!!
+	
+# 	print('{:g}'.format(result)) 
+# 	if result>0:
+# 		print('이득입니다.')
+# 	elif result==0:
+# 		print('본전입니다.') #이 코드 제 pc에서 잠시 디거빙 해보고 말씀드릴게요 3분이면 될거에요!
+# 	else:
+# 		print('손해입니다.')# 넵!!
+# #너무 감사합니다 ㅠㅠㅠㅠ 지금 함수를 안써서 그래요...ㅋㅋㅋ쿠ㅜㅜ
+# #이러면 끝..!! 제가 일부 추가는 했지만 위에 코드 거의 복붙했어요(이미 다 짜셨다는 말..ㅎㅎ) 음 이거 한번 
+
+# #값을 입력받을 부분 #앍 큐ㅠㅠㅠ
+# a=int(input('투자 액수를 입력하세요: '))
+# b=int(input('투자한 날짜 수를 입력하세요: '))
+# p = [] #퍼센트를 기록할 빈 리스트 
+# for i in range(1,b+1):  
+# 	c=int(input('{}일차 변동 데이터를 입력하세요: '.format(i))) #  # <- 여기서 수익률 퍼센트를 입력받아서 p 에 저장할 거에요
+# 	p.append(c)
+# #넹 ! 저도 볼게용
+# invest(a,b,p) #실행하면 될거에요.! 오잉 이거 뭔가 계산이 꼬인 것 같은데 한번 볼게요!
+
+
+
+
+
+
+
+# def invest(a,b,c):
+# 	original=a
+# 	for x in range(b):
+# 		a=a+a*(c[x]/100)
+
+# 	total=a-original
+# 	print('%d'%(total))
+# 	if total > a:     # -> 비교할 때 a가 아닌 0과 비교해주세요(이미 total은 수익만을 계산한 값입니다)
+# 		print('이득입니다.')
+# 	elif total == a:
+# 		print('본전입니다.')
+# 	else:
+# 		print('손해입니다.')
+	
+
+# a=int(input('투자 액수를 입력하세요:'))
+# b=int(input('투자한 날짜 수를 입력하세요:'))
+# c=[]
+# for i in range(b):
+# 	data=float(input('%d일차 변동 데이터를 입력하세요:'%(i+1)))
+# 	c.append(data)
+
+# invest(a,b,c)
+
+
+
+# 과제에 문제는 없고, 함수 개념 질문입니다!
+
+# 사용자 정의 함수를 만들때 매개변수와 리턴값을 지정하는 것은 선택 사항이잖아요. 매개변수나 리턴값을 사용할지 말지 정하는 기준이 있을까요?? 
+# 아직 문제를 봐도 매개변수와 리턴값을 모두 사용해야 하는지, 둘 중 하나만 사용할지, 둘 다 사용하지 말지 감이 안옵니다. 
+# 어떤 상황에서 어떻게 만드는지에 대한 매뉴얼은 없는 건가요?
+# 그냥 자기가 편한 방식으로 만드는 걸까요...?
+
+# nums로 입력되는 값만큼 각각 제곱을 하는 상황이니, 1차 반복문(for i in range(len(nums)): )을 함수의 매개변수인 nums로 입력된 값들이 i가 되게 반복문을 수정해주세요.
+# 2차 반복문(for j in range(nums[1],nums[i]+1): )1차 반복문의 i값의 횟수 만큼 반복할 수 있게 맞춰주세요. (for j in range(i): 이런 방식으로요)
+
+# 간단히 원리를 말씀드리면, 
+# 1차 반복문을 통해 입력받은 nums중 제곱 연산을 할 숫자(횟수)를 선택하고,
+# 2차 반복문에서는 1차 반복문에서 선택된 숫자(횟수)만큼 실제로 5를 제곱하면 되는 문제에요:)
+
+
+
+
+# 지금 학우님께서 작성하신 코드처럼 매개변수와 리턴 값을 모두 사용하는 것이 가장 보편적인 함수의 사용방식이에요.
+# 함수가 탄생한 배경을 보았을 때 다양한 상황이 주어졌을 때, 중복코드를 최소화하여 '재사용성'을 높히고 코드를 간결하게 만들어준다는 점에서 매개변수와 리턴값을 일반적으로 함께 사용해요.
+
+# 사용자 정의 함수를 만들 때 정해진 법칙이라는 것은 없어요.
+# 그렇지만 때에 따라 매개변수를 입력받지 않고 전역변수로 변수를 전달받아 연산을 하고 결과를 리턴값으로 할 수 있어요.(매개변수x, 리턴 값o)
+# → 재귀적으로 하나의 함수가 여러 차례 불리지만, 변화하는 값을 매개변수로 전달하기에 어려운 상황일 경우에 매개변수 없이 함수를 짤 수 있어요.
+
+# 또한 매개변수를 입력받더라도 결과를 리턴하지 않을 수도 있구요.
+# → 함수의 목적이 어떤 연산의 결과를 반환하는 것이 아니라, 함수 내부의 연산을 수행하는 것 자체가 목적인 경우(예를 들자면, 함수 내부에서  print()를 하거나, 함수가 동작할 때 전역변수에 값을 누적해야 하는 경우)
+
+# 지금 과제는 교수님께서 함수를 어떻게 사용해라 라고 특정한 조건을 주신 게 아니라면 학우님께서 작성한 코드처럼 매개변수와 리턴 값 모두를 활용하면 될 거에요:)
+
+
+# 어떤 파이썬 idle를 사용하는 지는 잘 모르겠지만, 메모장은 with open('students.txt', 'w')as file: 이런 식으로 파일을 읽어오라는 코드를 짰다면,
+# 현재 파이썬파일(파일입출력_과제1.py)와 같은 파일 경로나 한 단계 위에 있을 거에요.(만약에 안보인다면, 파이썬 idle의 파일 기본 저장 위치를 변경해주세요!)
+
+# 그렇지만, 학우님께서 ''95,'은 숫자가 아니라 스트링이라서 포매팅이 되지 않는다고 나오더라구요. '라고 말씀해주신 것 보면 파일에 정상적으로 과제1의 값이 저장된 것 같아요.
+# 넵 name, mid, fnl = ss.strip().split(',')로 각 줄의 정보를 변수에 저장하고, 수학연산을 해야 하는 값들만 int형태로 바꾸고 값을 점수에 따라 학점을 부여하면 될 거에요.(과제1을 통해 txt에 입력되는 데이터 형식은 모두 str(문자열)데이터타입이에요)
+# 지금 학우님께서 작성하신 코드대로 하면 될 것 같아요.
+# 혹시 교수님께서 과제2의 출력 형식에서 
+# '이름	중간	기말	총점	평균	학점'을 출력할 때 각 단어 간의 간격을 tab으로 하라는 지침이 있었다면 \t를 print() 포멧팅에 넣으시면 될 것 같아요:)
+
 # -*- coding: utf-8 -*-
 # UTF-8 encoding when using korean
 
-def calNums(base, *nums) :
-	for i in range(len(nums)):
-		total = base
-		for j in range(nums[1],nums[i]+1):
-			total *= base
-		print(f'{base}의 {nums[i]} 제곱 값은 {total}이다.')
+# def calNums(base, *nums) :
+# 	for i in range(len(nums)):
+# 		total = base
+# 		for j in range(nums[1],nums[i]+1):
+# 			total *= base
+# 		print(f'{base}의 {nums[i]} 제곱 값은 {total}이다.')
 	
-calNums(5, 1, 2, 3)
-calNums(2, 2, 4, 6, 8, 10)
+# calNums(5, 1, 2, 3)
+# calNums(2, 2, 4, 6, 8, 10)
 
 
 # print('이름 중간 기말 총점 평균 학점')
